@@ -10,11 +10,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="preload" href="assets/fonts/mak.woff" as="font" type="font/woff" crossorigin>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%232F2E33'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='%23B9ACEB' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%231E201D'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='%23B9ACEB' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
 <style>
 @font-face{font-family:"Mak";src:url(assets/fonts/mak.woff) format("woff");font-weight:400 700;font-display:swap}
 :root{
-  --graphite:#2F2E33; --paper:#2F2E33; --ink:#F2F1F5; --deep:#1C1B20; --lav:#B9ACEB; --mist:#A3A0AB; --soft:#C4C1CB; --line:rgba(242,241,245,.14);
+  --graphite:#1E201D; --paper:#1E201D; --ink:#F2F1F5; --deep:#1C1B20; --lav:#B9ACEB; --mist:#A3A0AB; --soft:#C4C1CB; --line:rgba(242,241,245,.14);
   --f-cond:"Mak",Arial,sans-serif; --f-ital:"Montserrat",Arial,sans-serif; --f-body:"Montserrat",Arial,sans-serif;
   --pad:clamp(16px,4vw,64px);
 }
@@ -42,9 +42,9 @@ a{color:inherit}
 .pill--line .pill__dot{background:#F2F1F5;color:var(--graphite)}
 .pill--line:hover{background:#F2F1F5;color:var(--graphite)}
 .pill--line:hover .pill__dot{background:var(--graphite);color:#F2F1F5}
-.pill--grad{background:linear-gradient(90deg,#B9ACEB 0%,#5246D6 70%,#3A2FB8 100%);color:#F2F1F5;padding:16px 20px 16px 24px;font-size:17px}
-.pill--grad .pill__dot{background:#F2F1F5;color:var(--deep)}
-.pill--grad:hover{filter:brightness(1.12)}
+.pill--grad{background:linear-gradient(90deg,#B4B4B4 0%,#D9D9D9 55%,#FFFFFF 100%);color:#1E201D;padding:16px 22px 16px 24px;font-size:17px}
+.pill--grad .pill__dot{background:none;color:#1E201D;width:auto;height:auto}
+.pill--grad:hover{filter:brightness(1.06)}
 
 .hero__body{position:relative;max-width:calc(1200px + 2*var(--pad));padding-top:clamp(60px,9vw,110px)}
 .hero h1{font:400 clamp(46px,10.6vw,127px)/.9 var(--f-cond);text-transform:uppercase;letter-spacing:-.005em}
@@ -56,7 +56,14 @@ a{color:inherit}
 .hero h1 .row--2 .w>span{animation-delay:.12s}
 .hero__lead{position:absolute;left:50%;top:calc(clamp(60px,9vw,110px) + 20px);font:400 15px/1.5 var(--f-body);max-width:41ch;color:#E2E0E8;animation:fade .8s .6s both}
 .hero .pill--grad{animation:fade .8s .5s both}
-.inf{height:clamp(150px,22vw,300px);margin:clamp(30px,4vw,60px) auto 0;max-width:1200px;animation:fade 1s .3s both}
+.vt-fl{position:relative;height:clamp(170px,26vw,330px);margin-top:clamp(10px,2vw,30px);pointer-events:none}
+.vt-fl__i{position:absolute;bottom:16px;width:min(40vw,560px);height:auto;max-width:none;opacity:0;animation:vtflIn 1.6s ease-out .3s forwards,vtflSway 7s ease-in-out 1.9s infinite alternate}
+.vt-fl__l{left:0;transform-origin:0 70%;--vtfl-d:-48px}
+.vt-fl__r{right:0;transform-origin:100% 70%;--vtfl-d:48px;animation-delay:.5s,2.4s}
+@keyframes vtflIn{from{opacity:0;transform:translateX(var(--vtfl-d))}to{opacity:1;transform:none}}
+@keyframes vtflSway{from{rotate:-1deg}to{rotate:1deg}}
+@media (max-width:640px){.vt-fl__i{width:47vw;bottom:8px}}
+@media (prefers-reduced-motion:reduce){.vt-fl__i{animation:none;opacity:1}}
 @keyframes rise{from{transform:translateY(105%)}to{transform:none}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
@@ -96,21 +103,53 @@ a{color:inherit}
 .link{display:inline-flex;gap:10px;align-items:center;margin-top:26px;font:500 15px/1 var(--f-body);text-decoration:none;padding-bottom:6px;border-bottom:1px solid currentColor;transition:gap .25s}
 .link:hover{gap:16px}
 
-/* ---------- услуги ---------- */
-.services{overflow:clip;padding:clamp(80px,10vw,150px) 0}
-.services__grid{max-width:calc(1200px + 2*var(--pad));display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(40px,6vw,120px);align-items:center}
-.badge{position:relative;width:min(100%,420px);aspect-ratio:1;margin:0 auto}
+/* ---------- обо мне и «полезна» ---------- */
+.about{max-width:calc(1200px + 2*var(--pad));display:flex;justify-content:flex-end}
+.about__box{width:min(100%,390px)}
+.badge{position:relative;width:min(100%,300px);aspect-ratio:1;margin:0 auto 6px}
 .badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 28s linear infinite}
 .badge text{font:400 15.5px var(--f-body);letter-spacing:.18em;text-transform:uppercase;fill:var(--ink)}
-.badge__core{position:absolute;inset:23%;border-radius:50%;overflow:hidden;background:var(--graphite)}
+.badge__core{position:absolute;inset:20%;border-radius:50%;overflow:hidden;background:#2A2B29}
 .badge__core img{width:100%;height:100%;object-fit:cover}
 @keyframes spin{to{transform:rotate(360deg)}}
-.services h2{font:400 clamp(44px,5.4vw,64px)/.95 var(--f-cond);text-transform:uppercase;margin-bottom:28px}
+.about__txt{font:400 17px/1.35 var(--f-body);color:var(--mist)}
+.services{max-width:calc(1200px + 2*var(--pad));padding-top:clamp(40px,4vw,56px)}
+.services h2{font:400 clamp(44px,5.4vw,64px)/.95 var(--f-cond);text-transform:uppercase;margin-bottom:clamp(28px,3vw,40px);max-width:9.5em}
 .svc{list-style:none;border-top:1px solid var(--line)}
-.svc li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}
-.svc b{font:400 22px/1.1 var(--f-body);text-transform:uppercase}
-.svc p{color:var(--soft);font-size:15px}
-.services__note{margin-top:24px;font:400 17px/1.35 var(--f-body);color:var(--mist)}
+.svc li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr);gap:24px;align-items:center;padding:clamp(24px,2.6vw,38px) 0;border-bottom:1px solid var(--line)}
+.svc b{font:400 clamp(24px,2.3vw,30px)/1.05 var(--f-cond);text-transform:uppercase}
+.svc p{color:var(--mist);font-size:15px}
+.pill--wide{display:flex;justify-content:center;width:100%;margin-top:clamp(40px,5vw,64px);text-transform:uppercase;letter-spacing:.04em;padding:18px 24px}
+
+/* ---------- форма ---------- */
+.form{max-width:calc(1200px + 2*var(--pad));display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);padding-top:clamp(70px,8vw,100px)}
+.form__head h2{font:400 clamp(40px,5vw,64px)/.95 var(--f-cond);text-transform:uppercase;max-width:8em}
+.form__head p{margin-top:clamp(24px,3vw,40px);font-size:17px;color:var(--mist);max-width:30em}
+.form__f{display:grid;gap:22px}
+.form__f label{display:grid;gap:10px;font-size:14px;color:var(--soft)}
+.form__f input,.form__f select,.form__f textarea{width:100%;font:400 16px/1.4 var(--f-body);color:var(--ink);background:#262825;border:1px solid rgba(242,241,245,.12);border-radius:10px;padding:16px 20px;outline:none;transition:border-color .2s}
+.form__f textarea{resize:vertical;min-height:84px}
+.form__f input::placeholder,.form__f textarea::placeholder{color:#8E8C93}
+.form__f input:focus,.form__f select:focus,.form__f textarea:focus{border-color:rgba(242,241,245,.45)}
+.form__f .is-err{border-color:#E08A8A}
+.form__sel{position:relative;display:block}
+.form__sel select{appearance:none;-webkit-appearance:none;padding-right:48px;cursor:pointer}
+.form__sel select option{background:#262825}
+.form__sel::after{content:"";position:absolute;right:20px;top:50%;border:5px solid transparent;border-top:6px solid var(--ink);border-bottom:0;translate:0 -50%;pointer-events:none}
+.form__f button{justify-self:start;border:0;cursor:pointer;margin-top:8px}
+.form__note{font-size:14px;color:var(--mist)}
+
+/* ---------- стоимость ---------- */
+.price{max-width:calc(1200px + 2*var(--pad));padding-top:clamp(80px,10vw,150px);position:relative}
+.price__h{font:400 clamp(44px,5.4vw,64px)/.95 var(--f-cond);text-transform:uppercase;margin-bottom:clamp(28px,4vw,48px)}
+.price__list{list-style:none;border-top:2px solid var(--ink)}
+.price__row{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(150px,auto);align-items:center;gap:16px;padding:clamp(22px,3vw,34px) 0;border-bottom:2px solid var(--ink);font:400 clamp(24px,3vw,40px)/1 var(--f-cond);text-transform:uppercase;cursor:default;transition:color .25s}
+.price__v{text-align:right;white-space:nowrap}.price__from{padding-right:clamp(16px,3vw,48px)}
+.price__row:hover{color:var(--lav)}
+.price__pic{position:fixed;left:0;top:0;width:min(380px,30vw);aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:10px;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.92) rotate(-3deg);transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.1,1);z-index:20;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.price__pic.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-3deg)}
+@media (max-width:640px){.price__row{grid-template-columns:minmax(0,1fr);gap:10px;font-size:26px}.price__from{display:none}.price__v{text-align:left;color:var(--lav)}.price__v::before{content:"от "}.price__row[data-noprice] .price__v::before{content:none}}
+@media (hover:none){.price__pic{display:none}}
 
 /* ---------- контакты ---------- */
 .talk{max-width:calc(1200px + 2*var(--pad));padding-top:clamp(90px,12vw,170px);padding-bottom:40px}
@@ -146,14 +185,16 @@ a{color:inherit}
   .case__stage{padding:0 18% 40px 0}
   .phone{width:30%;border-radius:22px;padding:5px}
   .phone__screen{border-radius:17px}
-  .services__grid{grid-template-columns:minmax(0,1fr)}
-  .badge{width:min(78%,340px)}
-  .svc li{grid-template-columns:1fr;gap:6px}
+  .about{justify-content:flex-start}
+  .badge{margin-left:0}
+  .svc li{grid-template-columns:1fr;gap:10px}
+  .form{grid-template-columns:1fr}
+  .form__f button{justify-self:stretch;justify-content:center}
   .talk__top{grid-template-columns:1fr}
 }
 @media (max-width:520px){
   .nav{padding-top:22px}
-  .nav .pill--line{padding:10px 10px 10px 16px;font-size:16px}
+  .nav .pill--line{padding:10px 10px 10px 16px;font-size:15px;gap:12px}
   .pill--grad{font-size:16px;padding:14px 16px 14px 24px}
   .laptop__lid{border-radius:10px 10px 0 0}
   .talk__big svg{width:28px}
@@ -184,7 +225,7 @@ a{color:inherit}
     </h1>
     <p class="hero__lead">Эффективно представлю ваш бизнес в&nbsp;сети и&nbsp;обеспечу стабильный поток заявок с&nbsp;помощью сильной структуры и&nbsp;стильного образа</p>
   </div>
-  <div class="inf vt-inf" aria-hidden="true" style="position:relative;pointer-events:none"><canvas style="position:absolute;left:0;top:-15%;width:100%;height:130%;display:block"></canvas></div>
+  <div class="vt-fl" aria-hidden="true"><img class="vt-fl__i vt-fl__l" src="assets/fl-l.webp" alt=""><img class="vt-fl__i vt-fl__r" src="assets/fl-r.webp" alt=""></div>
 </header>
 
 <main>
@@ -198,6 +239,22 @@ a{color:inherit}
   <section class="works wrap" id="works" aria-label="Работы">
 
     <article class="case">
+      <div class="case__stage">
+        <a class="laptop" href="https://mineevamargarita.ru/" target="_blank" rel="noopener" aria-label="Открыть сайт Школа Маргариты Минеевой">
+          <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-mineevamargarita-ru-desktop.webp" alt="Сайт школы Маргариты Минеевой на компьютере" loading="lazy"></span></span>
+          <span class="laptop__base"></span>
+        </a>
+        <div class="phone" aria-hidden="true"><div class="phone__screen scroller"><img src="assets/case-mineevamargarita-ru-mobile.webp" alt=""></div></div>
+      </div>
+      <div class="case__text">
+        <p class="case__meta">Онлайн-школа, многостраничный сайт</p>
+        <h3 class="case__title">Школа Маргариты Минеевой</h3>
+        <p class="case__about">Авторская школа духовного развития: курсы, услуги, магазин и&nbsp;библиотека в&nbsp;едином стиле</p>
+        <a class="link" href="https://mineevamargarita.ru/" target="_blank" rel="noopener">Открыть сайт <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="case case--flip">
       <div class="case__stage">
         <a class="laptop" href="https://rs-diz.github.io/detskaya-mebel-demo/" target="_blank" rel="noopener" aria-label="Открыть сайт Ростомер">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-rs-diz-github-io-detskaya-mebel-demo-desktop.webp" alt="Сайт Ростомер на компьютере" loading="lazy"></span></span>
@@ -213,7 +270,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="case case--flip">
+    <article class="case">
       <div class="case__stage">
         <a class="laptop" href="https://rs-diz.github.io/aipai-demo/" target="_blank" rel="noopener" aria-label="Открыть сайт AIPAI">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-rs-diz-github-io-aipai-demo-desktop.webp" alt="Сайт AIPAI на компьютере" loading="lazy"></span></span>
@@ -229,7 +286,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="case">
+    <article class="case case--flip">
       <div class="case__stage">
         <a class="laptop" href="https://rs-diz.github.io/basargin-demo/" target="_blank" rel="noopener" aria-label="Открыть сайт Basarg.in">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-rs-diz-github-io-basargin-demo-desktop.webp" alt="Сайт Basarg.in на компьютере" loading="lazy"></span></span>
@@ -245,7 +302,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="case case--flip">
+    <article class="case">
       <div class="case__stage">
         <a class="laptop" href="https://rs-diz.github.io/ogonek-banket/" target="_blank" rel="noopener" aria-label="Открыть сайт Огонёк">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-rs-diz-github-io-ogonek-banket-desktop.webp" alt="Сайт Огонёк на компьютере" loading="lazy"></span></span>
@@ -261,7 +318,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="case">
+    <article class="case case--flip">
       <div class="case__stage">
         <a class="laptop" href="https://xn--80aakbeapfbdaikge7afoeo5an4af1x.xn--p1ai/" target="_blank" rel="noopener" aria-label="Открыть сайт Удаление эпоксидной затирки">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-xn-80aakbeapfbdaikge7afoeo5an4af1x-xn-p1ai-desktop.webp" alt="Сайт Удаление эпоксидной затирки на компьютере" loading="lazy"></span></span>
@@ -277,7 +334,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="case case--flip">
+    <article class="case">
       <div class="case__stage">
         <a class="laptop" href="https://kasimova-26.tilda.ws/01" target="_blank" rel="noopener" aria-label="Открыть сайт Цветущий">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-kasimova-26-tilda-ws-01-desktop.webp" alt="Сайт Цветущий на компьютере" loading="lazy"></span></span>
@@ -293,7 +350,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="case">
+    <article class="case case--flip">
       <div class="case__stage">
         <a class="laptop" href="https://rs-diz.github.io/pivovarovsky/" target="_blank" rel="noopener" aria-label="Открыть сайт Пивоваровский">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-rs-diz-github-io-pivovarovsky-desktop.webp" alt="Сайт Пивоваровский на компьютере" loading="lazy"></span></span>
@@ -309,7 +366,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="case case--flip">
+    <article class="case">
       <div class="case__stage">
         <a class="laptop" href="https://rs-diz.github.io/dl-beauty/" target="_blank" rel="noopener" aria-label="Открыть сайт DL Beauty">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-rs-diz-github-io-dl-beauty-desktop.webp" alt="Сайт DL Beauty на компьютере" loading="lazy"></span></span>
@@ -325,7 +382,7 @@ a{color:inherit}
       </div>
     </article>
 
-    <article class="case">
+    <article class="case case--flip">
       <div class="case__stage">
         <a class="laptop" href="https://rs-diz.github.io/metodica-lp1/" target="_blank" rel="noopener" aria-label="Открыть сайт Metodica">
           <span class="laptop__lid"><span class="laptop__screen"><img src="assets/case-rs-diz-github-io-metodica-lp1-desktop.webp" alt="Сайт Metodica на компьютере" loading="lazy"></span></span>
@@ -342,24 +399,53 @@ a{color:inherit}
     </article>
   </section>
 
-  <section class="services" id="services">
-    <div class="wrap services__grid">
+  <section class="about wrap" aria-label="Обо мне">
+    <div class="about__box">
       <div class="badge" role="img" aria-label="Фото: Сакина">
         <svg viewBox="0 0 300 300"><defs><path id="circ" d="M150,150 m-122,0 a122,122 0 1,1 244,0 a122,122 0 1,1 -244,0"/></defs>
           <text><textPath href="#circ">Сайты на Тильде ★ Сайты на коде ★ Продвижение ★ </textPath></text></svg>
         <div class="badge__core"><img src="assets/vtphoto.webp" alt="" width="600" height="600"></div>
       </div>
-      <div>
-        <h2>Что делаю</h2>
-        <ul class="svc">
-          <li><b>Лендинг</b><p>Одна страница под одну услугу: оффер, цены, отзывы и кнопка записи.</p></li>
-          <li><b>Многостраничный сайт</b><p>Услуги, портфолио, команда и контакты – для студий и компаний.</p></li>
-          <li><b>Магазин до 100 товаров</b><p>Каталог, корзина и оплата на Тильде, без сложной CMS.</p></li>
-          <li><b>Продвижение в Яндексе</b><p>Карточка на Картах, базовое SEO и настройка заявок с сайта.</p></li>
-        </ul>
-        <p class="services__note">Цену называю после короткого разговора о&nbsp;задаче: от&nbsp;15&nbsp;000&nbsp;₽</p>
-      </div>
+      <p class="about__txt">Мне важно, чтобы после нашей работы ваш сайт вызывал доверие с&nbsp;первого экрана, а&nbsp;клиентам хотелось написать вам первыми</p>
     </div>
+  </section>
+
+  <section class="services wrap" id="services">
+    <h2>Я&nbsp;точно буду полезна, если:</h2>
+    <ul class="svc">
+      <li><b>Бизнесу пора появиться в&nbsp;поиске</b><p>Сделаю сайт и&nbsp;карточку на&nbsp;Картах, чтобы вас находили по&nbsp;запросам в&nbsp;вашем городе, а&nbsp;не&nbsp;конкурентов.</p></li>
+      <li><b>Сайт рабочий, но&nbsp;устарел</b><p>Обновлю дизайн и&nbsp;структуру: ссылку снова будет не&nbsp;стыдно отправить клиенту.</p></li>
+      <li><b>Заявки идут только по&nbsp;сарафану</b><p>Соберу страницу, которая ведёт к&nbsp;одной кнопке и&nbsp;превращает просмотры в&nbsp;обращения.</p></li>
+      <li><b>Нужен узнаваемый образ</b><p>Фирменный стиль: логотип, цвета и&nbsp;шрифты, по&nbsp;которым вас узнают в&nbsp;соцсетях, на&nbsp;вывеске и&nbsp;в&nbsp;мессенджере.</p></li>
+      <li><b>Нужна презентация или&nbsp;гайд</b><p>Сверстаю презентацию для&nbsp;клиентов и&nbsp;партнёров или&nbsp;гайд в&nbsp;одном стиле с&nbsp;сайтом.</p></li>
+    </ul>
+    <a class="pill pill--grad pill--wide" href="#form">Обсудить задачу <span class="pill__dot" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4.5 3H9v4.5"/></svg></span></a>
+  </section>
+  <section class="price wrap" id="price" aria-label="Стоимость">
+    <h2 class="price__h">Стоимость</h2>
+    <ul class="price__list">
+      <li class="price__row" data-img="assets/case-rs-diz-github-io-detskaya-mebel-demo-desktop.webp"><span class="price__t">Одностраничный сайт / лендинг</span><span class="price__from">от</span><span class="price__v">15 000 ₽</span></li>
+      <li class="price__row" data-img="assets/case-rs-diz-github-io-pivovarovsky-desktop.webp"><span class="price__t">Многостраничный сайт</span><span class="price__from">от</span><span class="price__v">25 000 ₽</span></li>
+      <li class="price__row" data-img="assets/case-rs-diz-github-io-basargin-demo-desktop.webp"><span class="price__t">Интернет-магазин</span><span class="price__from">от</span><span class="price__v">40 000 ₽</span></li>
+      <li class="price__row" data-img="assets/case-rs-diz-github-io-dl-beauty-desktop.webp"><span class="price__t">Фирменный стиль</span><span class="price__from">от</span><span class="price__v">7 000 ₽</span></li>
+      <li class="price__row" data-noprice data-img="assets/price-metodichka-kniga.webp"><span class="price__t">Презентации, гайды</span><span class="price__from"></span><span class="price__v">по запросу</span></li>
+    </ul>
+    <img class="price__pic" src="assets/case-rs-diz-github-io-detskaya-mebel-demo-desktop.webp" alt="" aria-hidden="true">
+  </section>
+
+  <section class="form wrap" id="form" aria-label="Заявка">
+    <div class="form__head">
+      <h2>Обсудим ваш сайт</h2>
+      <p>Оставьте контакты и&nbsp;выберите услугу&nbsp;– я&nbsp;напишу вам и&nbsp;задам пару вопросов о&nbsp;задаче.</p>
+    </div>
+    <form class="form__f" id="lead" novalidate>
+      <label>Как к&nbsp;вам обращаться<input name="name" placeholder="Имя" autocomplete="name" required></label>
+      <label>Телефон или&nbsp;Telegram<input name="contact" placeholder="+7 900 000-00-00 или @ник" autocomplete="tel" required></label>
+      <label>Какая услуга нужна<span class="form__sel"><select name="service"><option>Одностраничный сайт / лендинг</option><option>Многостраничный сайт</option><option>Интернет-магазин</option><option>Фирменный стиль</option><option>Презентации, гайды</option><option>Пока не знаю, нужна консультация</option></select></span></label>
+      <label>Пара слов о&nbsp;задаче<textarea name="about" rows="3" placeholder="Чем занимаетесь, есть ли сайт сейчас"></textarea></label>
+      <button class="pill pill--grad" type="submit">Отправить заявку <span class="pill__dot" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9 9 3M4.5 3H9v4.5"/></svg></span></button>
+      <p class="form__note" hidden>Откроется WhatsApp с&nbsp;готовым сообщением&nbsp;– осталось нажать «Отправить».</p>
+    </form>
   </section>
 </main>
 
@@ -414,93 +500,6 @@ a{color:inherit}
 })();
 </script>
 <script>
-(function () {
-  function start(box) {
-    if (box.__vt) return; box.__vt = 1;
-    var cv = box.querySelector('canvas'), ctx = cv.getContext('2d');
-    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var W = 0, H = 0, dpr = 1, visible = true, raf = 0, t0 = performance.now();
-    // нити бесконечности: масштаб, сдвиг, цвет, толщина
-    var S = [
-      { k: 1.00, dy: 0.00, c: '255,255,255', a: .95, w: 1.6, ph: 0.0 },
-      { k: 1.04, dy: 0.02, c: '185,172,235', a: .85, w: 1.2, ph: 0.9 },
-      { k: 0.96, dy: -.02, c: '124,108,240', a: .9, w: 1.4, ph: 1.7 },
-      { k: 1.08, dy: 0.04, c: '82,70,214', a: .9, w: 1.1, ph: 2.6 },
-      { k: 0.92, dy: -.04, c: '196,96,232', a: .75, w: 1.0, ph: 3.4 },
-      { k: 1.12, dy: -.01, c: '52,42,165', a: 1, w: 1.8, ph: 4.2 },
-      { k: 0.88, dy: 0.03, c: '150,130,255', a: .7, w: 0.9, ph: 5.1 }
-    ];
-    var P = []; for (var i = 0; i < 40; i++) P.push({ u: Math.random() * 6.283, o: (Math.random() - .5) * 0.18, s: .4 + Math.random() * 1.4, r: .6 + Math.random() * 1.4, f: Math.random() * 6.28 });
-    function size() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = cv.clientWidth; H = cv.clientHeight;
-      cv.width = Math.max(1, Math.round(W * dpr)); cv.height = Math.max(1, Math.round(H * dpr));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function geo() { var a = Math.min(W * 0.40, H * 1.0); return { cx: W / 2, cy: H / 2, ax: a, ay: a * 0.45 }; }
-    function pt(g, s, u, t) {                                  // лемниската Бернулли, слегка «дышит»
-      var su = Math.sin(u), cu = Math.cos(u), d = 1 + su * su;
-      var k = s.k + 0.025 * Math.sin(t * 0.8 + s.ph);
-      var wob = 1 + 0.06 * Math.sin(u * 2 + t * 0.9 + s.ph);
-      return [g.cx + g.ax * k * cu / d, g.cy + g.ay * k * wob * su * cu / d * 2 + s.dy * g.ay];
-    }
-    function draw(now) {
-      var t = (now - t0) / 1000;
-      ctx.clearRect(0, 0, W, H);
-      if (!W || !H) return;
-      var g = geo(), grow = reduce ? 1 : Math.min(1, t / 2.2); grow = 1 - Math.pow(1 - grow, 3);
-      // мягкое свечение за знаком
-      ctx.globalCompositeOperation = 'lighter';
-      var halo = ctx.createRadialGradient(g.cx, g.cy, 0, g.cx, g.cy, g.ax * 0.9);
-      halo.addColorStop(0, 'rgba(150,90,230,' + (0.28 * grow) + ')'); halo.addColorStop(.45, 'rgba(52,42,165,' + (0.16 * grow) + ')'); halo.addColorStop(1, 'rgba(52,42,165,0)');
-      ctx.fillStyle = halo; ctx.save(); ctx.translate(g.cx, g.cy); ctx.scale(1, 0.5); ctx.translate(-g.cx, -g.cy);
-      ctx.beginPath(); ctx.arc(g.cx, g.cy, g.ax * 0.9, 0, 6.2832); ctx.fill(); ctx.restore();
-      var steps = 260, end = 6.2832 * grow;
-      for (var i = 0; i < S.length; i++) {
-        var s = S[i];
-        ctx.beginPath();
-        for (var k = 0; k <= steps; k++) { var u = -1.5708 + end * k / steps, p = pt(g, s, u, t); if (k) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); }
-        ctx.strokeStyle = 'rgba(' + s.c + ',' + s.a + ')'; ctx.lineWidth = s.w; ctx.shadowColor = 'rgba(' + s.c + ',.9)'; ctx.shadowBlur = 14;
-        ctx.stroke();
-      }
-      ctx.shadowBlur = 0;
-      // горячий центр перекрестья
-      var core = ctx.createRadialGradient(g.cx, g.cy, 0, g.cx, g.cy, g.ay * 0.55);
-      core.addColorStop(0, 'rgba(255,255,255,' + (0.55 * grow) + ')'); core.addColorStop(.35, 'rgba(210,140,255,' + (0.25 * grow) + ')'); core.addColorStop(1, 'rgba(120,80,230,0)');
-      ctx.fillStyle = core; ctx.beginPath(); ctx.arc(g.cx, g.cy, g.ay * 0.55, 0, 6.2832); ctx.fill();
-      // бегущий огонёк по знаку
-      if (!reduce && grow >= 1) {
-        for (var c = 0; c < 2; c++) {
-          var uu = t * 0.9 + c * 3.1416, q = pt(g, S[0], uu, t);
-          var fl = ctx.createRadialGradient(q[0], q[1], 0, q[0], q[1], 16);
-          fl.addColorStop(0, 'rgba(255,255,255,.9)'); fl.addColorStop(.4, 'rgba(185,172,235,.35)'); fl.addColorStop(1, 'rgba(124,108,240,0)');
-          ctx.fillStyle = fl; ctx.beginPath(); ctx.arc(q[0], q[1], 16, 0, 6.2832); ctx.fill();
-        }
-      }
-      // искры вокруг
-      for (var j = 0; j < P.length; j++) {
-        var pp = P[j], uj = pp.u + (reduce ? 0 : t * 0.12 * pp.s), b = pt(g, S[0], uj, t);
-        var al = (0.35 + 0.65 * Math.abs(Math.sin(t * pp.s + pp.f))) * grow;
-        ctx.fillStyle = 'rgba(220,210,255,' + al.toFixed(2) + ')';
-        ctx.beginPath(); ctx.arc(b[0] + pp.o * g.ax * 0.3, b[1] + pp.o * g.ay, pp.r, 0, 6.2832); ctx.fill();
-      }
-      ctx.globalCompositeOperation = 'source-over';
-    }
-    function loop(now) { raf = 0; draw(now); if (visible && !reduce) raf = requestAnimationFrame(loop); }
-    size(); draw(performance.now());
-    if ('ResizeObserver' in window) new ResizeObserver(function () { size(); draw(performance.now()); }).observe(box);
-    else window.addEventListener('resize', function () { size(); draw(performance.now()); });
-    if (reduce) return;
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible && !raf) raf = requestAnimationFrame(loop); }).observe(box);
-    } else raf = requestAnimationFrame(loop);
-  }
-  function init() { [].forEach.call(document.querySelectorAll('.vt-inf'), start); }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
-  setTimeout(init, 800); setTimeout(init, 2500);
-})();
-</script>
-<script>
 // текст обложки и меню – в линию с буквой «В» в слове «продвижение»
 (function(){
   var word = document.querySelector('.hero h1 .row--2 .w span'), lead = document.querySelector('.hero__lead'), links = document.querySelector('.nav__links'), body = document.querySelector('.hero__body'), nav = document.querySelector('.nav');
@@ -517,5 +516,58 @@ a{color:inherit}
   addEventListener('load', align); addEventListener('resize', align);
 })();
 </script>
+<script>
+// стоимость: при наведении на строку рядом с курсором появляется работа
+(function(){
+  var pic=document.querySelector(".price__pic"); if(!pic) return;
+  addEventListener("scroll",function(){ pic.classList.remove("on"); },{passive:true});
+  document.querySelectorAll(".price__row").forEach(function(r){
+    r.addEventListener("mouseenter",function(){ pic.src=r.getAttribute("data-img"); pic.classList.add("on"); });
+    r.addEventListener("mouseleave",function(){ pic.classList.remove("on"); });
+    r.addEventListener("mousemove",function(e){ pic.style.left=(e.clientX+200)+"px"; pic.style.top=e.clientY+"px"; });
+  });
+})();
+</script>
+<script>
+// форма: собирает сообщение и открывает WhatsApp
+(function(){
+  var f=document.getElementById('lead'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); var ok=true;
+    ['name','contact'].forEach(function(n){ var el=f.elements[n]; var bad=!el.value.trim(); el.classList.toggle('is-err',bad); if(bad) ok=false; });
+    if(!ok){ f.querySelector('.is-err').focus(); return; }
+    var t='Здравствуйте! Заявка с витрины.\nИмя: '+f.elements.name.value.trim()+'\nКонтакт: '+f.elements.contact.value.trim()+'\nУслуга: '+f.elements.service.value+(f.elements.about.value.trim()?'\nО задаче: '+f.elements.about.value.trim():'');
+    f.querySelector('.form__note').hidden=false;
+    window.open('https://wa.me/79188896809?text='+encodeURIComponent(t),'_blank','noopener');
+  });
+})();
+</script>
+
+<!-- Стоимость на телефоне: без фиолетового, работа раскрывается под строкой в центре экрана или по нажатию -->
+<style>
+@media (max-width:640px){
+.price__v{color:#F2F1F5!important}
+.price__row{transition:none}
+.price__thumb{grid-column:1/-1;display:block;width:100%;max-height:0;opacity:0;overflow:hidden;border-radius:10px;transform:translateY(12px) scale(.96) rotate(-2deg);transition:max-height .5s cubic-bezier(.2,.7,.1,1),opacity .35s,transform .5s cubic-bezier(.2,.7,.1,1),margin .5s}
+.price__thumb img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.price__row.is-on .price__thumb{max-height:260px;opacity:1;transform:none;margin-top:8px}
+}
+@media (hover:none){.price__row:hover{color:inherit}}
+</style>
+<script>
+(function(){
+  var mq=matchMedia("(max-width:640px)"); if(!mq.matches) return;
+  var rows=[].slice.call(document.querySelectorAll(".price__row")); if(!rows.length) return;
+  rows.forEach(function(r){
+    var t=document.createElement("span"); t.className="price__thumb"; t.setAttribute("aria-hidden","true");
+    var i=document.createElement("img"); i.src=r.getAttribute("data-img"); i.alt=""; i.loading="lazy"; t.appendChild(i); r.appendChild(t);
+    r.addEventListener("click",function(){ set(r); });
+  });
+  function set(a){ rows.forEach(function(r){ r.classList.toggle("is-on", r===a); }); }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) set(e.target); }); },{rootMargin:"-42% 0px -48% 0px"});
+  rows.forEach(function(r){ io.observe(r); });
+})();
+</script>
+
 </body>
 </html>

@@ -32,6 +32,7 @@ a{color:inherit}
 .logo{font:400 26px/1 var(--f-cond);letter-spacing:.02em;text-transform:uppercase;text-decoration:none}
 .logo span{display:block}
 .nav__links{margin-left:auto;margin-right:clamp(24px,8vw,114px);display:flex;gap:26px;list-style:none;font:400 15px/1 var(--f-body)}
+@media (min-width:1200px){.nav{position:relative}.nav__links{position:absolute;left:50%;margin:0}}
 .nav__links a{text-decoration:none;opacity:.85}
 .nav__links a:hover{opacity:1}
 .pill{text-transform:none;display:inline-flex;align-items:center;gap:22px;border-radius:999px;text-decoration:none;font:400 15px/1 var(--f-body);white-space:nowrap;transition:background-color .25s,color .25s,border-color .25s,filter .25s}

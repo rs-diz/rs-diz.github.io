@@ -49,7 +49,7 @@ a{color:inherit}
 .hero__body{position:relative;max-width:calc(1200px + 2*var(--pad));padding-top:clamp(60px,9vw,110px)}
 .hero h1{font:400 clamp(46px,10.6vw,127px)/.9 var(--f-cond);text-transform:uppercase;letter-spacing:-.005em}
 .hero h1 .row{display:flex;align-items:center;gap:clamp(16px,2vw,32px)}
-.hero h1 .row--1{padding-left:clamp(0px,1.5vw,20px)}
+.hero h1 .row--1{padding-left:0;margin-left:-.024em}
 .hero h1 .row--2{margin-top:.12em}
 .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-top:.12em;margin-top:-.12em}
 .hero h1 .w>span{display:inline-block;animation:rise 1s cubic-bezier(.2,.7,.1,1) both}
@@ -498,6 +498,23 @@ a{color:inherit}
   function init() { [].forEach.call(document.querySelectorAll('.vt-inf'), start); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
   setTimeout(init, 800); setTimeout(init, 2500);
+})();
+</script>
+<script>
+// текст обложки и меню – в линию с буквой «В» в слове «продвижение»
+(function(){
+  var word = document.querySelector('.hero h1 .row--2 .w span'), lead = document.querySelector('.hero__lead'), links = document.querySelector('.nav__links'), body = document.querySelector('.hero__body'), nav = document.querySelector('.nav');
+  function align(){
+    lead.style.left = ''; links.style.left = '';
+    if (innerWidth <= 900) return;
+    var t = word.firstChild, i = t.textContent.toLowerCase().indexOf('в'); if (i < 0) return;
+    var r = document.createRange(); r.setStart(t, i); r.setEnd(t, i + 1);
+    var x = r.getBoundingClientRect().left;
+    lead.style.left = (x - body.getBoundingClientRect().left) + 'px';
+    if (innerWidth >= 1200) links.style.left = (x - nav.getBoundingClientRect().left) + 'px';
+  }
+  align(); if (document.fonts) document.fonts.ready.then(align);
+  addEventListener('load', align); addEventListener('resize', align);
 })();
 </script>
 </body>
